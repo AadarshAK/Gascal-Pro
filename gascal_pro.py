@@ -20,17 +20,19 @@ rplpg = float(input("Enter Rate Per Unit Of LPG : "))
 ta = (currentReading - previousReading) * rplpg
 uc = (currentReading - previousReading)
 
+"""Creating Header"""
+headerList = ["Date", "Previous Reading", "Current Reading", "Rate/Unit of LPG", "Units Consumed", "Total Amount"]
+
 """Storing values in Pandas DataFrame"""
-data = pd.DataFrame(
-    {
-        'Date':[d],
-        'Previous Reading':[previousReading],
-        'Current Reading':[currentReading],
-        'Rate/Unit of LPG':[rplpg],
-        'Units Consumed':[uc],
-        'Total Amount':[ta]
-    })
+data = pd.DataFrame([
+        d,
+        previousReading,
+        currentReading,
+        rplpg,
+        uc,
+        ta
+    ])
 
 """Writing to CSV file"""
 
-data.to_csv('/Gascal.csv', mode='a',index=False, header=False)
+data.to_csv('/Gascal.csv', mode='a',index=False, header=headerList)
